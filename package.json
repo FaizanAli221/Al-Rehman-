@@ -1,0 +1,42 @@
+{
+  "name": "al-rehman-biryani-api",
+  "version": "1.0.0",
+  "description": "Production-grade REST API for Al Rehman Biryani, a Karachi biryani & fast-food delivery platform. Built with Express and deployed as a zero-config Vercel serverless function.",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "vite",
+    "dev:backend": "nodemon api/index.js",
+    "build": "vite build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "nodemon": "^3.1.4",
+    "tailwindcss": "^4.0.0",
+    "vite": "^5.1.4"
+  },
+  "keywords": [
+    "express",
+    "vercel",
+    "serverless",
+    "rest-api",
+    "food-delivery",
+    "karachi",
+    "biryani"
+  ],
+  "license": "MIT",
+  "author": "Al Rehman Biryani"
+}
