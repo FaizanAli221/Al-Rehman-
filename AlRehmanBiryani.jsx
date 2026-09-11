@@ -81,7 +81,7 @@ const DAIG_PACKAGES = [
     servings: "35-40 Persons",
     price: 12500,
     priceLabel: "Rs. 12,500",
-    description: "Full traditional copper daig prepared with 10kg high quality basmati rice and tender chicken boti.",
+    description: "Full traditional copper daig prepared with 10kg premium basmati rice and tender chicken boti.",
     image: "/images/daig-catering.png",
   },
   {
@@ -243,7 +243,7 @@ export default function AlRehmanBiryani() {
 
   const topRef = useRef(null);
 
-  // 1. Initial Load: Fetch categories & products from backend REST API
+  // 1. Initial Load: Fetch categories & products from backend
   useEffect(() => {
     async function loadData() {
       try {
@@ -259,8 +259,8 @@ export default function AlRehmanBiryani() {
           setActiveTab(catData[0].id);
         }
       } catch (err) {
-        console.error("Error connecting to backend API:", err);
-        setError("Failed to load menu from server. Please ensure backend is running.");
+        console.error("Error loading menu data:", err);
+        setError("Failed to load menu. Please try refreshing the page.");
       } finally {
         setLoading(false);
       }
@@ -268,7 +268,7 @@ export default function AlRehmanBiryani() {
     loadData();
   }, []);
 
-  // 2. Synchronize Cart with Express backend POST /api/orders/calculate
+  // 2. Synchronize Cart with Express backend
   useEffect(() => {
     async function updateCartSummary() {
       if (cartItems.length === 0) {
@@ -360,7 +360,7 @@ export default function AlRehmanBiryani() {
   const handleDaigBooking = (e) => {
     e.preventDefault();
     const pkg = DAIG_PACKAGES.find((p) => p.id === selectedDaigId);
-    const message = `*Daig Booking Inquiry — Al Rehman Biryani*\n\nName: ${daigName}\nPhone: ${daigPhone}\nEvent Date: ${daigDate}\nItem: ${daigQty}x ${pkg.name}\nTotal Estimated: Rs. ${pkg.price * daigQty}\n\nPlease confirm availability!`;
+    const message = `*Daig Booking Inquiry — Al Rehman Biryani Kharadar*\n\nName: ${daigName}\nPhone: ${daigPhone}\nEvent Date: ${daigDate}\nItem: ${daigQty}x ${pkg.name}\nTotal Estimated: Rs. ${pkg.price * daigQty}\n\nPlease confirm booking!`;
     const url = `https://wa.me/923142961604?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
@@ -410,7 +410,7 @@ export default function AlRehmanBiryani() {
         <span>Online Daig & Box Delivery Without Advance All Over Karachi</span>
       </div>
 
-      {/* Main Header with Navigation */}
+      {/* Main Header with Clean Navigation */}
       <header className="sticky top-0 z-30 bg-white shadow-md border-b border-gray-100">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           {/* Logo */}
@@ -425,7 +425,7 @@ export default function AlRehmanBiryani() {
               <h1 className="text-base font-black text-indigo-950">Al Rehman Biryani</h1>
               <span className="text-[10px] font-bold text-green-600 flex items-center gap-1">
                 <span className="h-2 w-2 rounded-full bg-green-500 animate-ping"></span>
-                Kharadar, Karachi (Live REST API)
+                Kharadar, Karachi (Open Now)
               </span>
             </div>
           </div>
@@ -464,11 +464,12 @@ export default function AlRehmanBiryani() {
             </button>
           </nav>
 
-          {/* Right Action Icons */}
+          {/* Right Action Buttons */}
           <div className="flex items-center gap-3">
             <a
               href="tel:03142961604"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-50 text-indigo-950 border border-yellow-200 hover:bg-yellow-100 transition-colors"
+              title="Call 0314 2961604"
             >
               <Phone size={18} />
             </a>
@@ -597,7 +598,7 @@ export default function AlRehmanBiryani() {
             {loading ? (
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <Loader2 size={36} className="animate-spin text-yellow-500 mb-3" />
-                <p className="text-sm font-bold text-gray-600">Connecting to REST API & loading menu...</p>
+                <p className="text-sm font-bold text-gray-600">Loading fresh menu...</p>
               </div>
             ) : error ? (
               <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-center text-red-700">
@@ -606,7 +607,7 @@ export default function AlRehmanBiryani() {
                   onClick={() => window.location.reload()}
                   className="mt-3 rounded-full bg-red-600 px-4 py-2 text-xs font-bold text-white"
                 >
-                  Retry Connection
+                  Retry
                 </button>
               </div>
             ) : (
@@ -760,7 +761,7 @@ export default function AlRehmanBiryani() {
 
           {/* Instant Daig Booking Form */}
           <div id="daig-form" className="rounded-3xl bg-white p-6 sm:p-8 shadow-xl border border-gray-100 max-w-2xl mx-auto">
-            <h2 className="text-xl font-black text-indigo-950 mb-1">Instant Daig Inquiry Form</h2>
+            <h2 className="text-xl font-black text-indigo-950 mb-1">Instant Daig Booking Form</h2>
             <p className="text-xs text-gray-500 mb-6">Fill in details to get an instant WhatsApp quote and booking confirmation.</p>
 
             <form onSubmit={handleDaigBooking} className="space-y-4">
@@ -783,7 +784,7 @@ export default function AlRehmanBiryani() {
                     type="tel"
                     value={daigPhone}
                     onChange={(e) => setDaigPhone(e.target.value)}
-                    placeholder="03001234567"
+                    placeholder="0314 2961604"
                     className="w-full rounded-xl border border-gray-200 px-3.5 py-2.5 text-sm outline-none focus:border-yellow-400"
                   />
                 </div>
@@ -887,71 +888,85 @@ export default function AlRehmanBiryani() {
         </div>
       )}
 
-      {/* PAGE 4: LOCATIONS & CONTACT PAGE */}
+      {/* PAGE 4: LOCATIONS & CONTACT PAGE (AUTHENTIC REAL CONTACT DETAILS) */}
       {currentPage === "contact" && (
         <div className="mx-auto max-w-6xl px-4 py-8 space-y-8 animate-in fade-in">
           <div className="text-center space-y-2">
             <h1 className="text-3xl font-black text-indigo-950">Visit or Contact Us</h1>
-            <p className="text-xs text-gray-500">We deliver all over Karachi from our primary branch in Kharadar.</p>
+            <p className="text-xs text-gray-500">We deliver all over Karachi from our primary branch in Kharadar Chowk.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Contact Card */}
+            {/* Real Contact Card */}
             <div className="rounded-3xl bg-white p-6 sm:p-8 shadow-xl border border-gray-100 space-y-6">
-              <h2 className="text-xl font-black text-indigo-950">Kharadar Branch Details</h2>
+              <h2 className="text-xl font-black text-indigo-950">Main Kharadar Branch</h2>
 
               <div className="space-y-4 text-xs">
                 <div className="flex items-start gap-3">
                   <MapPin size={20} className="text-yellow-600 shrink-0 mt-1" />
                   <div>
-                    <p className="font-extrabold text-indigo-950 text-sm">Main Branch Address</p>
-                    <p className="text-gray-600 mt-0.5">Gk-7/73, Hajra Manzil, Nakhuda Street, Kharadar, Karachi, Pakistan</p>
+                    <p className="font-extrabold text-indigo-950 text-sm">Official Location & Address</p>
+                    <p className="text-gray-600 mt-0.5 leading-relaxed">
+                      Gk-7/73, Hajra Manzil, Nakhuda Street, Near Kharadar Chowk, Kharadar, Karachi, Sindh, Pakistan
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <Phone size={20} className="text-yellow-600 shrink-0 mt-1" />
                   <div>
-                    <p className="font-extrabold text-indigo-950 text-sm">Phone Numbers</p>
-                    <p className="text-gray-600 mt-0.5">0314 2961604 / 0300 1234567</p>
+                    <p className="font-extrabold text-indigo-950 text-sm">Direct Phone Numbers</p>
+                    <p className="text-gray-600 mt-0.5">
+                      <strong>Mobile / WhatsApp:</strong> 0314 2961604<br />
+                      <strong>Landline:</strong> 021 32532454 / 0300 2424844
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <Clock size={20} className="text-yellow-600 shrink-0 mt-1" />
                   <div>
-                    <p className="font-extrabold text-indigo-950 text-sm">Operating Hours</p>
-                    <p className="text-gray-600 mt-0.5">Open 7 Days a Week (11:00 AM – 12:00 Midnight)</p>
+                    <p className="font-extrabold text-indigo-950 text-sm">Kitchen & Delivery Hours</p>
+                    <p className="text-gray-600 mt-0.5">Open 7 Days a Week: 11:00 AM – 12:00 Midnight</p>
                   </div>
                 </div>
               </div>
 
-              <a
-                href="https://wa.me/923142961604"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 rounded-2xl bg-green-600 py-3.5 text-xs font-black text-white shadow hover:bg-green-700"
-              >
-                <MessageSquare size={16} />
-                <span>Chat Directly on WhatsApp</span>
-              </a>
+              <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://wa.me/923142961604"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-green-600 py-3.5 text-xs font-black text-white shadow hover:bg-green-700"
+                >
+                  <MessageSquare size={16} />
+                  <span>Order via WhatsApp (0314 2961604)</span>
+                </a>
+                <a
+                  href="tel:03142961604"
+                  className="flex items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-5 py-3.5 text-xs font-black text-indigo-950 shadow hover:bg-yellow-300"
+                >
+                  <Phone size={16} />
+                  <span>Call Now</span>
+                </a>
+              </div>
             </div>
 
             {/* Interactive Location Card */}
             <div className="rounded-3xl bg-gradient-to-br from-yellow-100 to-amber-200 p-8 shadow-xl border border-yellow-300 flex flex-col justify-between">
               <div>
                 <span className="rounded-full bg-indigo-950 px-3 py-1 text-xs font-black text-yellow-300">
-                  Karachi Delivery Network
+                  Karachi Instant Delivery Network
                 </span>
-                <h3 className="text-2xl font-black text-indigo-950 mt-4">We Deliver to All Areas of Karachi</h3>
+                <h3 className="text-2xl font-black text-indigo-950 mt-4">We Deliver All Over Karachi</h3>
                 <p className="text-xs text-indigo-900 mt-2 leading-relaxed">
-                  Clifton, Defense (DHA), Gulshan-e-Iqbal, PECHS, Nazimabad, North Nazimabad, Malir, Saddar, Kharadar, Korangi, and surrounding areas.
+                  Fast hot delivery to Kharadar, Tower, Saddar, Defense (DHA), Clifton, PECHS, Gulshan-e-Iqbal, Nazimabad, North Nazimabad, Malir, Korangi, Bahadurabad, and all areas of Karachi.
                 </p>
               </div>
 
               <div className="rounded-2xl bg-white/90 backdrop-blur-xs p-4 mt-6 border border-white shadow-xs">
-                <p className="text-xs font-black text-indigo-950">Standard Delivery Charges:</p>
-                <p className="text-xs text-gray-600 mt-1">Rs. 100 flat rate for orders under Rs. 1000. <span className="font-bold text-green-700">FREE Delivery for orders above Rs. 1000!</span></p>
+                <p className="text-xs font-black text-indigo-950">Delivery Rate Structure:</p>
+                <p className="text-xs text-gray-600 mt-1">Rs. 100 flat delivery rate. <span className="font-bold text-green-700">FREE Delivery on orders above Rs. 1000!</span> Pay Cash on Delivery.</p>
               </div>
             </div>
           </div>
@@ -967,7 +982,7 @@ export default function AlRehmanBiryani() {
               <Truck size={22} className="text-yellow-600" />
               <span>Track Your Active Order</span>
             </h2>
-            <p className="text-xs text-gray-500 mb-4">Enter the mobile phone number used during checkout to view live order status.</p>
+            <p className="text-xs text-gray-500 mb-4">Enter your mobile phone number to check current rider delivery status.</p>
 
             <form onSubmit={handleTrackOrder} className="flex gap-2">
               <input
@@ -975,7 +990,7 @@ export default function AlRehmanBiryani() {
                 type="tel"
                 value={trackPhone}
                 onChange={(e) => setTrackPhone(e.target.value)}
-                placeholder="Enter Phone Number (e.g. 03001234567)"
+                placeholder="Enter Phone Number (e.g. 03142961604)"
                 className="flex-1 rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-yellow-400"
               />
               <button
@@ -992,8 +1007,8 @@ export default function AlRehmanBiryani() {
                   <span className="font-black text-indigo-950 text-sm">Status:</span>
                   <span className="font-bold bg-green-600 text-white px-3 py-1 rounded-full">{trackedOrderResult.status}</span>
                 </div>
-                <p><span className="text-gray-500">Estimated Delivery:</span> {trackedOrderResult.estimatedTime}</p>
-                <p><span className="text-gray-500">Assigned Rider:</span> {trackedOrderResult.riderName}</p>
+                <p><span className="text-gray-500">Estimated Arrival:</span> {trackedOrderResult.estimatedTime}</p>
+                <p><span className="text-gray-500">Kharadar Kitchen Dispatch:</span> Confirmed</p>
               </div>
             )}
           </div>
@@ -1006,7 +1021,7 @@ export default function AlRehmanBiryani() {
               <div className="rounded-2xl bg-white p-5 shadow-xs border border-gray-100 space-y-1">
                 <h3 className="text-sm font-black text-indigo-950">How long does delivery take in Karachi?</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Hot box orders are delivered within 30 to 45 minutes across most Karachi areas. Daig orders should ideally be booked 3 to 4 hours in advance.
+                  Hot box orders are dispatched directly from Kharadar and delivered within 30 to 45 minutes across Karachi. Daig orders should ideally be booked 3 to 4 hours in advance.
                 </p>
               </div>
 
@@ -1075,17 +1090,17 @@ export default function AlRehmanBiryani() {
               A.R
             </div>
             <h3 className="mt-3 text-lg font-black text-indigo-950">Al Rehman Biryani</h3>
-            <p className="text-xs text-gray-500 mt-1">Kharadar, Karachi, Pakistan</p>
+            <p className="text-xs text-gray-500 mt-1">Kharadar Chowk, Karachi, Pakistan</p>
           </div>
 
           <div className="space-y-1 text-xs text-gray-600">
-            <p><span className="font-bold text-indigo-950">Phone:</span> 0314 2961604 / 0300 1234567</p>
-            <p><span className="font-bold text-indigo-950">Email:</span> rehmanbiryani@gmail.com</p>
+            <p><span className="font-bold text-indigo-950">Phone / WhatsApp:</span> 0314 2961604</p>
+            <p><span className="font-bold text-indigo-950">Landline:</span> 021 32532454 / 0300 2424844</p>
             <p><span className="font-bold text-indigo-950">Address:</span> Gk-7/73, Hajra Manzil, Nakhuda Street, Kharadar, Karachi</p>
           </div>
 
           <div className="text-xs text-gray-400">
-            © 2026 Al Rehman Biryani. Powered by REST API & Vite React.
+            © 2026 Al Rehman Biryani Kharadar Karachi. All rights reserved.
           </div>
         </div>
       </footer>
@@ -1249,7 +1264,7 @@ export default function AlRehmanBiryani() {
                 </div>
                 <h3 className="text-xl font-black text-indigo-950">Order Sent to WhatsApp!</h3>
                 <p className="text-xs text-gray-600">
-                  Your order details have been calculated by the REST API and sent directly to Al Rehman Biryani WhatsApp.
+                  Your order has been formatted and sent directly to Al Rehman Biryani WhatsApp.
                 </p>
 
                 <div className="space-y-2 pt-2">
@@ -1296,7 +1311,7 @@ export default function AlRehmanBiryani() {
                       type="tel"
                       value={customerPhone}
                       onChange={(e) => setCustomerPhone(e.target.value)}
-                      placeholder="03001234567"
+                      placeholder="0314 2961604"
                       className="w-full rounded-xl border border-gray-200 px-3.5 py-2.5 text-sm outline-none focus:border-yellow-400"
                     />
                   </div>
@@ -1328,7 +1343,7 @@ export default function AlRehmanBiryani() {
                     {isSubmittingOrder ? (
                       <>
                         <Loader2 size={18} className="animate-spin" />
-                        <span>Sending to WhatsApp...</span>
+                        <span>Preparing WhatsApp Message...</span>
                       </>
                     ) : (
                       <>
